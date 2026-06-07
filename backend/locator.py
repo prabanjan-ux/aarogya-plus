@@ -7,8 +7,8 @@ from datetime import datetime
 # CONFIG
 # ---------------------------------------------
 
-DEFAULT_OPEN = 9
-DEFAULT_CLOSE = 21
+DEFAULT_OPEN = 7
+DEFAULT_CLOSE = 23
 
 OVERPASS_SERVERS = [
     "https://overpass.kumi.systems/api/interpreter",
@@ -100,11 +100,23 @@ def _reverse_geocode(lat, lon):
 # MAIN FUNCTION
 # ---------------------------------------------
 
-def find_medicine_nearby(_, lat, lng):
+FALLBACK_LAT = 13.129160
+FALLBACK_LNG = 77.586007
+
+
+def find_medicine_nearby(_, lat=None, lng=None):
 
     try:
-        lat = float(lat)
-        lng = float(lng)
+        # ---------------------------------------------
+        # HANDLE FALLBACK LOCATION
+        # ---------------------------------------------
+        try:
+            lat = float(lat)
+            lng = float(lng)
+        except:
+            print("⚠️ Invalid or missing location. Using fallback.")
+            lat = FALLBACK_LAT
+            lng = FALLBACK_LNG
 
         print(f"📍 Searching near: {lat}, {lng}")
 

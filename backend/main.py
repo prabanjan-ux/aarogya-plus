@@ -458,6 +458,7 @@ def followup():
     except Exception as e:
         print(f"❌ /api/followup: {e}")
         return jsonify([])
+        
 @app.get("/api/locate-medicine")
 def locate_medicine():
     try:
@@ -467,18 +468,26 @@ def locate_medicine():
 
         print(f"DEBUG: locate params: name='{name}', lat='{lat_raw}', lng='{lng_raw}'")
 
-        # ✅ Safe parsing (no 400)
+        # ✅ FALLBACK LOCATION
+        FALLBACK_LAT = 13.12842275
+        FALLBACK_LNG = 77.58653425
+
+        # ✅ Safe parsing with fallback
         try:
             lat = float(lat_raw)
             lng = float(lng_raw)
-        except Exception as e:
-            print(f"DEBUG: Float error: {e}")
-            return jsonify({
-                "results": [],
-                "error": "Invalid latitude/longitude"
-            })
+        except:
+            print("⚠️ Using fallback location")
+            lat = FALLBACK_LAT
+            lng = FALLBACK_LNG
 
-        print(f"📍 Parsed location: {lat}, {lng}")
+        # Extra safety (if 0 or None)
+        if not lat or not lng:
+            print("⚠️ Invalid coords → fallback used")
+            lat = FALLBACK_LAT
+            lng = FALLBACK_LNG
+
+        print(f"📍 Final location: {lat}, {lng}")
 
         try:
             results = find_medicine_nearby(name, lat, lng)

@@ -1,5 +1,5 @@
 const BASE = import.meta.env.DEV
-  ? "http://localhost:5000"
+  ? "http://10.221.228.94:5000"
   : ""; // in production, same origin
 
 async function handleRes(r) {
