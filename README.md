@@ -1,8 +1,6 @@
 # Aarogya+
 
-<<<<<<< HEAD
 A smart prescription reader, medicine reminder, and symptom analyzer designed to help elderly patients manage their healthcare independently.
-=======
 <div align="center">
   <img src="https://img.shields.io/badge/Status-Active-brightgreen.svg" alt="Status" />
   <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" alt="Python Version" />
@@ -17,7 +15,6 @@ A smart prescription reader, medicine reminder, and symptom analyzer designed to
 **Aarogya+** is an advanced AI-powered web application built specifically to make healthcare interactions stress-free for the elderly and visually impaired. Originally a monolithic project, it has been robustly refactored into a completely open and modular platform.
 
 From scanning messy doctor prescriptions using cutting-edge OCR, to an AI symptom analyzer and a free local pharmacy locator, Aarogya+ is your all-in-one digital health companion.
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 
 ## Overview
 
@@ -103,7 +100,6 @@ The application is specifically designed for elderly users who may struggle with
 
 ## ✨ Key Features
 
-<<<<<<< HEAD
 ```
 aarogya-plus/
 ├── backend/
@@ -137,7 +133,6 @@ aarogya-plus/
 │
 ├── .gitignore               # Git ignore rules
 └── README.md                # This file
-=======
 - 🗣️ **Multilingual & Voice-First** — Interfaces and Text-to-Speech support spanning English, Hindi, Tamil, Telugu, Kannada, Spanish, and French. Includes browser-based speech recognition.
 - 📷 **Smart Prescription Scanner** — Uses Gemini Vision OCR and an FDA-data pipeline to instantly digitize and format handwritten prescriptions.
 - 🩺 **LLM Symptom Analyzer** — Powered locally via Ollama (`mistral:7b`), offering smart triage advice, warnings, and localized translations without risking privacy.
@@ -146,7 +141,6 @@ aarogya-plus/
 - 🏥 **Medical History System** — Built-in SQLite database securely storing past scans, eliminating duplicate reads.
 - 👵 **Accessibility-Centric UI** — Large font sizes, clear contrast ratios, dynamic micro-animations, and easily tappable interfaces tailored for seniors.
 
----
 
 ## 🏗️ Architecture & Project Structure
 
@@ -174,7 +168,6 @@ AarogyaPlus/
     │   └── main.jsx          # Vite React injection point
     ├── vite.config.js        # Port 3000 -> 5000 Proxy config
     └── package.json          # Node dependencies
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 ```
 
 ### Key Files Description
@@ -190,7 +183,6 @@ AarogyaPlus/
 
 ## 🚀 Setup & Installation
 
-<<<<<<< HEAD
 Before setting up Aarogya+, ensure you have the following installed:
 
 | Software | Version | Purpose |
@@ -232,7 +224,7 @@ ollama pull qwen2.5:3b
 ollama list
 ```
 
-<<<<<<< HEAD
+
 ## Installation
 
 ### 1. Clone the Repository
@@ -250,7 +242,7 @@ cd aarogya-plus
 ```bash
 cd backend
 
-<<<<<<< HEAD
+
 # Create virtual environment
 python -m venv venv
 
@@ -281,7 +273,6 @@ python main.py
 ```
 *API running on `http://localhost:5000`*
 
-<<<<<<< HEAD
 ### 3. Configure Environment Variables
 
 Create a `.env` file in the `backend` directory:
@@ -361,7 +352,6 @@ CREATE INDEX idx_prescription_medicines_prescription_id ON prescription_medicine
 ```bash
 cd frontend
 
-<<<<<<< HEAD
 # Install dependencies
 npm install
 =======
@@ -370,13 +360,11 @@ npm install
 
 # Start Development Server
 npm run dev
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 ```
 *Frontend running on `http://localhost:3000` (API calls automatically proxy to `5000`)*
 
 ### 6. Run Development Servers
 
-<<<<<<< HEAD
 **Terminal 1 - Backend:**
 ```bash
 cd backend
@@ -394,7 +382,6 @@ To package the front-end directly into Flask's static assets for production:
 **Terminal 2 - Frontend:**
 ```bash
 cd frontend
-<<<<<<< HEAD
 npm run dev
 # Frontend runs on http://localhost:3000
 ```
@@ -723,18 +710,12 @@ PORT=5000
 
 4. **Run Production Server:**
 ```bash
-=======
-npm run build:backend   # Custom script builds Vite and copies directly to /backend/static/
-
-cd ../backend
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 python main.py
 ```
 Vist `http://localhost:5000` and the Flask server will intelligently serve the React build while handling REST API routes.
 
 The application will now be available at `http://localhost:5000` with the React build served from Flask.
 
-<<<<<<< HEAD
 ### Deployment Options
 
 **Option 1: Traditional VPS/Dedicated Server**
@@ -746,20 +727,6 @@ The application will now be available at `http://localhost:5000` with the React 
 - Render, Railway, or Fly.io for backend
 - Vercel or Netlify for frontend (with CORS configuration)
 - Supabase for database
-=======
-## 📡 Core API Reference
-
-The backend exposes the following robust API endpoints, all natively supporting the `?lang=` parameter for instant i18n translation:
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| **POST** | `/api/analyze` | Generates diagnostic advice from text/audio inputs via Mistral |
-| **POST** | `/api/scan` | Processes uploaded prescription image -> structured JSON |
-| **POST** | `/api/save-prescription` | Permanently stores a scanned RX in the `database.py` history |
-| **GET** | `/api/prescriptions` | Fetches historical patient history |
-| **GET** | `/api/locate-medicine`| Triggers OpenStreetMap to fetch closest pharmacies using lat/lon |
-| **GET** | `/api/reminders` | Fetches the current TTS-enabled daily schedule |
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 
 **Option 3: Docker**
 ```dockerfile
@@ -768,21 +735,12 @@ FROM python:3.10-slim
 # ... configuration
 ```
 
-<<<<<<< HEAD
 ### Environment Variables for Production
 
 Ensure all sensitive variables are set in your production environment:
 - `GEMINI_API_KEY`
 - `SUPABASE_URL` and `SUPABASE_KEY` (if using database)
 - `FLASK_DEBUG=false`
-=======
-## 🐞 Troubleshooting
-
-- **Symptom Analyzer timing out/hanging:** Check if Ollama is running. Run `ollama serve` in a background terminal.
-- **Microphone not working:** Browsers require app rendering from `localhost` or via `HTTPS` to grant microphone permission. Wait ~500ms after clicking the Mic icon.
-- **Port Conflicts:** If `localhost:5000` is in use (often by MacOS system services), alter the `PORT` inside the backend `.env` file, and ensure `proxy` in `vite.config.js` is identically updated.
-- **Locator fails:** OpenStreetMap Overpass servers might briefly rate limit. The app runs a fallback algorithm, wait a few minutes and try again.
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
 
 ## Contributing
 
@@ -888,7 +846,6 @@ To Be Updated - Coverage information to be added.
 
 **Made with ❤️ for Health Tech & Open Source.**
 
-<<<<<<< HEAD
 ### Ollama Not Responding
 
 **Problem:** LLM calls fail with connection errors
@@ -1033,5 +990,3 @@ To Be Updated - Add any special acknowledgements
 ---
 
 **Note:** This project is designed for educational and assistive purposes. Always consult with healthcare professionals for medical advice. This application does not replace professional medical diagnosis or treatment.
-=======
->>>>>>> 55d341ead7d12dbde6eac39bb9dd9663dfd1c447
